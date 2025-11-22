@@ -6,8 +6,8 @@ import unittest
 from ocpp_anonymizer.anonymizer import anonymize_payload
 from ocpp_anonymizer.hasher import hash_value
 
-class TestAnonymizer(unittest.TestCase):
 
+class TestAnonymizer(unittest.TestCase):
     def test_anonymize_authorize(self):
         payload = {"idTag": "USER123"}
         anonymized = anonymize_payload("Authorize", payload)
@@ -35,7 +35,7 @@ class TestAnonymizer(unittest.TestCase):
             "iccid": "ICCID789",
             "imsi": "IMSI101",
             "meterSerialNumber": "MSN112",
-            "meterType": "TypeZ"
+            "meterType": "TypeZ",
         }
         anonymized = anonymize_payload("BootNotification", payload)
         self.assertEqual(anonymized["chargePointVendor"], hash_value("VendorX"))
@@ -58,5 +58,6 @@ class TestAnonymizer(unittest.TestCase):
         anonymized = anonymize_payload("UpdateFirmware", payload)
         self.assertEqual(anonymized["location"], "ftp://host/firmware.bin")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

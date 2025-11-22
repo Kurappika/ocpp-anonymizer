@@ -5,8 +5,8 @@ import os
 import unittest
 from ocpp_anonymizer.hasher import hash_value, anonymize_url
 
-class TestHasher(unittest.TestCase):
 
+class TestHasher(unittest.TestCase):
     def test_hash_value_consistency(self):
         """Verify that the same input always produces the same hash."""
         self.assertEqual(hash_value("test_string"), hash_value("test_string"))
@@ -39,5 +39,6 @@ class TestHasher(unittest.TestCase):
         self.assertEqual(anonymize_url("not a url"), "[INVALID_URL_MASKED]")
         self.assertEqual(anonymize_url(123), "[INVALID_URL_MASKED]")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

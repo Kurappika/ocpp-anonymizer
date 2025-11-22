@@ -7,9 +7,9 @@ from .parser import process_log_line
 
 # Define what happens when a user imports the package
 __all__ = [
-    'hash_value',
-    'anonymize_payload',
-    'process_log_line',
+    "hash_value",
+    "anonymize_payload",
+    "process_log_line",
 ]
 
-__version__ = '0.1.0' # Keep version here
+__version__ = "0.1.0"  # Keep version here
