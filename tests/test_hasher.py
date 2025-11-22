@@ -1,7 +1,9 @@
 # tests/test_hasher.py
 
 import unittest
-from ocpp_anonymizer.hasher import hash_value, anonymize_url, SECRET_SALT
+import os
+import unittest
+from ocpp_anonymizer.hasher import hash_value, anonymize_url
 
 class TestHasher(unittest.TestCase):
 

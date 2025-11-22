@@ -3,9 +3,20 @@
 import hashlib
 from urllib.parse import urlparse, urlunparse
 
+import os
+import warnings
+
 # CRITICAL: This salt is used to ensure deterministic (consistent) hashing. 
-# Replace with a long, randomly generated secret key in a production environment.
-SECRET_SALT = b"YOUR_SUPER_SECRET_SALT_FOR_DETERMINISTIC_HASHING_12345"
+# It is recommended to set this as an environment variable.
+DEFAULT_SALT = "YOUR_SUPER_SECRET_SALT_FOR_DETERMINISTIC_HASHING_12345"
+secret_salt_env = os.environ.get("OCPP_ANONYMIZER_SECRET_SALT", DEFAULT_SALT)
+SECRET_SALT = secret_salt_env.encode('utf-8')
+
+if secret_salt_env == DEFAULT_SALT:
+    warnings.warn(
+        "Using default SECRET_SALT. For production use, set the OCPP_ANONYMIZER_SECRET_SALT environment variable.",
+        UserWarning
+    )
 
 def hash_value(value: str) -> str | None:
     """Generates a consistent SHA256 hash token for the input string."""

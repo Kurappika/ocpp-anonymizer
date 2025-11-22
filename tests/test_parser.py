@@ -1,5 +1,6 @@
 # tests/test_parser.py
 
+import os
 import unittest
 import json
 from ocpp_anonymizer.parser import process_log_line

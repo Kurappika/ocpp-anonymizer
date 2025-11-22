@@ -1,6 +1,8 @@
 # tests/test_anonymizer.py
 
 import unittest
+import os
+import unittest
 from ocpp_anonymizer.anonymizer import anonymize_payload
 from ocpp_anonymizer.hasher import hash_value
 

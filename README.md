@@ -67,15 +67,32 @@ print(anonymized_payload)
 
 ## Configuration
 
-### **IMPORTANT: Change the Secret Salt**
+### **IMPORTANT: Set the Secret Salt**
 
-The library uses a default `SECRET_SALT` for hashing. For production use, you **must** replace this with your own unique, randomly generated secret. This ensures that the generated hashes are unique to your environment.
+The library uses a deterministic hashing algorithm, which requires a secret salt. For security, it is crucial to use a unique, randomly generated salt in your environment.
 
-You can change the salt by modifying the `SECRET_SALT` variable in `ocpp_anonymizer/hasher.py`.
+You should set the `OCPP_ANONYMIZER_SECRET_SALT` environment variable to a long, random string.
 
-```python
-# src/ocpp_anonymizer/hasher.py
-SECRET_SALT = b"YOUR_SUPER_SECRET_SALT_FOR_DETERMINISTIC_HASHING_12345"
+**Example:**
+
+```bash
+export OCPP_ANONYMIZER_SECRET_SALT="a_very_long_and_random_secret_string_12345"
+```
+
+If this environment variable is not set, the library will use a default, insecure salt and print a `UserWarning`.
+
+## Running Tests
+
+To run the tests, first install the package in editable mode:
+
+```bash
+pip install -e .
+```
+
+Then, run the tests using the following command:
+
+```bash
+OCPP_ANONYMIZER_SECRET_SALT="test_salt" python3 -m unittest discover tests
 ```
 
 ## Contributing
